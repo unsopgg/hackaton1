@@ -24,21 +24,21 @@ def get_data(html):
         except:
             img = ''
         try:
-            des = car.find('p', class_='year-miles').text.strip()
-            despa = car.find('p', class_='body-type').text.strip()
-            despacito = car.find('p', class_='volume').text.strip()
+            dscrb1 = car.find('p', class_='year-miles').text.strip()
+            dscrb2 = car.find('p', class_='body-type').text.strip()
+            dscrb3 = car.find('p', class_='volume').text.strip()
         except:
-            des = ''
-            despa = ''
-            despacito = ''
+            dscrb1 = ''
+            dscrb2 = ''
+            dscrb3 = ''
 
         data = {
             'title': title,
             'price': price,
             'img': img,
-            'des': des,
-            'despa': despa,
-            'despacito': despacito
+            'dscrb1': dscrb1,
+            'dscrb2': dscrb2,
+            'dscrb3': dscrb3
         }
 
         write_csv(data)
@@ -46,7 +46,7 @@ def get_data(html):
 def write_csv(data):
     with open('cars.csv', 'a') as csv_file:
         writer = csv.writer(csv_file, delimiter='\n')
-        writer.writerow((data['title'],data['img'], data['price'], data['des'], data['despa'], data['despacito']+'\n'))
+        writer.writerow((data['title'],data['img'], data['price'], data['dscrb1'], data['dscrb2'], data['dscrb3']+'\n'))
 
 def main():
     for page in range(1, 47):
